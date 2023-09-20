@@ -1042,18 +1042,18 @@ def create_ui():
                         hypernetwork_learn_rate = gr.Textbox(label='Hypernetwork Learning rate', placeholder="Hypernetwork Learning rate", value="0.00001", elem_id="train_hypernetwork_learn_rate")
 
                     with FormRow():
-                        clip_grad_mode = gr.Dropdown(value="disabled", label="Gradient Clipping", choices=["disabled", "value", "norm"])
-                        clip_grad_value = gr.Textbox(placeholder="Gradient clip value", value="0.1", show_label=False)
+                        clip_grad_mode = gr.Dropdown(value="norm", label="Gradient Clipping", choices=["disabled", "value", "norm"])
+                        clip_grad_value = gr.Textbox(placeholder="Gradient clip value", value="0.1", show_label=True)
 
                     with FormRow():
-                        batch_size = gr.Number(label='Batch size', value=1, precision=0, elem_id="train_batch_size")
+                        batch_size = gr.Number(label='Batch size', value=4, precision=0, elem_id="train_batch_size")
                         gradient_step = gr.Number(label='Gradient accumulation steps', value=1, precision=0, elem_id="train_gradient_step")
 
                     dataset_directory = gr.Textbox(label='Dataset directory', placeholder="Path to directory with input images", elem_id="train_dataset_directory")
                     log_directory = gr.Textbox(label='Log directory', placeholder="Path to directory where to write outputs", value="textual_inversion", elem_id="train_log_directory")
 
                     with FormRow():
-                        template_file = gr.Dropdown(label='Prompt template', value="style_filewords.txt", elem_id="train_template_file", choices=get_textual_inversion_template_names())
+                        template_file = gr.Dropdown(label='Prompt template', value="faceT2.txt", elem_id="train_template_file", choices=get_textual_inversion_template_names())
                         create_refresh_button(template_file, textual_inversion.list_textual_inversion_templates, lambda: {"choices": get_textual_inversion_template_names()}, "refrsh_train_template_file")
 
                     training_width = gr.Slider(minimum=64, maximum=2048, step=8, label="Width", value=512, elem_id="train_training_width")
